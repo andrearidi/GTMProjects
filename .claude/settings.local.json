@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s https://www.google.com/search?q=%22machine+shop+ERP+selection%22+criteria+OR+comparison+OR+%22what+to+look+for%22 -H \"User-Agent: Mozilla/5.0 \\(Macintosh; Intel Mac OS X 10_15_7\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/120.0.0.0 Safari/537.36\")",
+      "Bash(curl -s \"https://www.google.com/search?q=%22AS9100+to+IA9100%22+OR+%22AS9100+2026%22+new+requirements+data+management&num=10\" -H \"User-Agent: Mozilla/5.0 \\(Macintosh; Intel Mac OS X 10_15_7\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/120.0.0.0 Safari/537.36\")",
+      "Bash(curl -s \"https://www.googleapis.com/customsearch/v1?q=cost+manufacturing+knowledge+loss+retiring+worker+study+OR+data+OR+knowledge+transfer&key=AIzaSyBgl2e6xTCxhXMDMfG0bx2aOR3grc1gOBE&cx=a0c18f59a6c754ebc\")",
+      "Bash(curl -s \"https://www.googleapis.com/customsearch/v1?q=manufacturing+knowledge+capture+methods+results+OR+evidence+OR+what+works&key=AIzaSyBgl2e6xTCxhXMDMfG0bx2aOR3grc1gOBE&cx=a0c18f59a6c754ebc\")",
+      "WebSearch",
+      "WebFetch(domain:www.simpleque.com)",
+      "WebFetch(domain:www.cimx.com)",
+      "WebFetch(domain:www.qmii.com)",
+      "WebFetch(domain:interfacing.com)",
+      "mcp__playwright__browser_click",
+      "mcp__playwright__browser_navigate"
+    ]
+  }
+}
