@@ -112,10 +112,13 @@ Mark signal as manual-required. Report to user. Move to next signal.
 
 #### A2.5 — Final Confirmation
 
-Display the screenshot and full comment text.
-Ask: "Type CONFIRM to post, anything else to cancel:"
+Display the full comment text in the response.
+Then use the AskUserQuestion tool to show a popup confirmation dialog:
+  Question: "Post this comment on [person.name]'s post?"
+  Options: ["Post", "Cancel"]
 
-Wait for "CONFIRM" (case-insensitive). Anything else → cancel and move on.
+If user selects "Post" → proceed to A2.6.
+If user selects "Cancel" → cancel and move to next signal.
 
 #### A2.6 — Post
 
@@ -187,21 +190,28 @@ artifacts used for user confirmation and should not persist after the session.
 
 ---
 
-## MODE B — Publish LinkedIn Posts (Owned Content)
+## MODE B — Prepare LinkedIn Posts for Manual Publishing
+
+Posts are published manually by the user, not automated through the browser.
+This mode prepares posts for easy copy-paste publishing.
 
 Scan ./data/content/drafts/ for files with status: approved AND project: [project_name].
 
 For each approved post:
-1. Show full text to user for review
-2. Navigate to https://www.linkedin.com
-3. Click "Start a post"
-4. Type full post text into the composer
-5. Screenshot before posting — show to user
-6. Get CONFIRM
-7. Click Post
-8. Screenshot confirmation
-9. Move file to ./data/content/posts/ with published_url and published_at
-10. Update PROJECT.json stats
+1. Show the full post text formatted and ready to copy
+2. Display word count, character count, and hashtags
+3. Show the research sources used (for user's reference)
+4. Ask: "Mark as ready-to-publish? [yes / edit / skip]"
+5. If yes: update file status to "ready-to-publish" and add ready_at timestamp
+6. Remind user: "Copy the text above and paste into LinkedIn. After publishing,
+   run /post-published [filename] [url] to update records."
+
+Do NOT navigate to LinkedIn or attempt to post automatically.
+Do NOT use the browser to type or submit posts.
+
+After the user publishes manually and provides the URL:
+- Move file to ./data/content/posts/ with published_url and published_at
+- Update PROJECT.json stats
 
 ---
 
@@ -216,15 +226,15 @@ For signals where touch_number is 2 and timing elapsed (5+ days):
 5. Click "Message"
 6. Type approved DM text
 7. Screenshot before sending
-8. Get CONFIRM
-9. Click Send
+8. Use AskUserQuestion tool with popup: "Send this DM to [person.name]?" Options: ["Send", "Cancel"]
+9. If "Send" → Click Send. If "Cancel" → skip.
 10. Update signal record — if this was Touch 3, set status: fully-engaged
 
 ---
 
 ## Safety Rules
 
-- Never post without CONFIRM typed by the user
+- Never post without explicit user approval via AskUserQuestion popup
 - Never post for a different project than confirmed in Step 0
 - Never post the same comment twice on the same signal
 - Skip any signal with signal_type: competitor — flag as intelligence-only
